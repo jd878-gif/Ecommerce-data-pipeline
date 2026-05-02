@@ -46,7 +46,13 @@ print(f"Generated {len(product_df)} products!")
 
 order = []
 for i in range(50000):
-    order_date = fake.date_between(start_date='-2y', end_date='today')
+    order_date = fake.date_between(start_date='-5y', end_date='today')
+    start_date = datetime(2021, 1, 1).date()
+    days_diff = (order_date - start_date).days
+    base_amount = random.uniform(20, 5000)
+    trend = 1 + (days_diff / 1825) * 0.5
+    seasonality = 1 + 0.3 * (order_date.month in [11, 12, 1])
+    amount = round(base_amount * trend * seasonality, 2)
     order.append({
         'order_id' : f"ORD{i+1:04d}",
         'customer_id': f"CUST{random.randint(1,10000):04d}",
@@ -66,6 +72,9 @@ print(f"Generated {len(order_df)} orders!")
 order_items = []
 for i in range(45000):
     unit_price = round(random.uniform(10, 5000), 2)
+    days_diff = random.randint(0, 1825)  
+    trend = 1 + (days_diff / 1825) * 0.5
+    seasonality = 1 + 0.3 * random.choice([0, 0, 0, 1])
     quantity = random.randint(1, 5)
     discount_applied = round(random.uniform(0, 0.6), 2)
     total_price = round(unit_price * quantity * (1 - discount_applied), 2)
