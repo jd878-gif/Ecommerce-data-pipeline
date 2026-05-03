@@ -30,26 +30,26 @@ An industry-level E-Commerce Data Pipeline project built from scratch showing co
 ## Project Structure
 ```
 ecommerce-data-pipeline/
-├── data/                          # Generated CSV data files
+├── data/                          
 │   ├── customer.csv
 │   ├── product.csv
 │   ├── order.csv
 │   └── order_items.csv
-├── dags/                          # Apache Airflow DAGs
-│   └── ecommerce_etl_dag.py       # Automated ETL pipeline
-├── dashboard/                     # Streamlit dashboard
-│   └── app.py                     # Interactive dashboard
-├── ml/                            # Machine Learning models
-│   ├── sales_forecast.py          # Sales forecasting model
-│   ├── churn_prediction.py        # Customer churn prediction
-│   └── customer_segmentation.py   # Customer segmentation
-├── docker/                        # Docker configuration
-├── generate_data.py               # Data generation script
-├── load_to_MYSQL.py               # MySQL data loader
-├── etl_pipeline.py                # ETL pipeline script
-├── requirements.txt               # Python dependencies
-├── .env                           # Environment variables
-└── .gitignore                     # Git ignore rules
+├── dags/                          
+│   └── ecommerce_etl_dag.py       
+├── dashboard/                     
+│   └── app.py                     
+├── ml/                            
+│   ├── sales_forecast.py          
+│   ├── churn_prediction.py        
+│   └── customer_segmentation.py   
+├── docker/                        
+├── generate_data.py               
+├── load_to_MYSQL.py               
+├── etl_pipeline.py                
+├── requirements.txt               
+├── .env                           
+└── .gitignore                     
 ```
 
 ---
@@ -103,7 +103,7 @@ extract_data → transform_data → load_data → summary_data
 
 ---
 
-## 📈 Streamlit Dashboard
+## Streamlit Dashboard
 
 ### Features
 - Interactive Plotly charts
