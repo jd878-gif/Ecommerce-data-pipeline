@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from sqlalchemy import create_engine
 import plotly.express as px
+import os
 
 engine = create_engine("mysql+pymysql://root:jeet1108@localhost/ecommerce_db")
 
@@ -158,3 +159,32 @@ if len(date_range) == 2:
         (filtered_df['order_date'] >= pd.Timestamp(date_range[0])) &
         (filtered_df['order_date'] <= pd.Timestamp(date_range[1]))
     ]
+
+root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+st.header("Machine Learning Insights")
+
+tab1, tab2, tab3 = st.tabs(["Sales Forecast", "Churn Prediction", "Customer Segments"])
+
+with tab1:
+    st.subheader("Sales Forecast:")
+    col1, col2 = st.columns(2)
+    col1.metric("Next month predicted revenue", "$4.4M")
+    col2.metric("Model R2 Score:", "0.65")
+    st.image(os.path.join(root_path,"ml","sales_forecast.png"))
+
+with tab2:
+    st.subheader("Churn Prediction:")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Churn Rate:", "60.8%")
+    col2.metric("Model Accuracy:","63%")
+    col3.metric("At Risk Customers:", "3,035" )
+    st.image(os.path.join(root_path,"ml","churn_prediction.png"))
+
+with tab3:
+    st.subheader("Customer Segments:")
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("VIP Customers:","1,726")
+    col2.metric("Regular Customers:","3,175")
+    col3.metric("At Risk Customers:","3,035")
+    col4.metric("Dormant:","1458")
+    st.image(os.path.join(root_path,"ml","customer_segments.png"))
