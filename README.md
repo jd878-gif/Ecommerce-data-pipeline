@@ -122,6 +122,9 @@ streamlit run dashboard/app.py
 
 Access at: `http://localhost:8501`
 
+## Live Dashboard
+Access the live dashboard at: http://35.172.117.131:8501
+
 ---
 
 ## Machine Learning Models
