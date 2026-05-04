@@ -117,7 +117,7 @@ extract_data → transform_data → load_data → summary_data
 
 
 ## AWS Deployment
-![EC2 Instance](screenshots/ec2_instance.png)
+![EC2 Instance](screenshots/EC2_instance.png)
 ![Dashboard](screenshots/dashboard_overview.png)
 ![ML Insights](screenshots/ml_insights.png)
 ```
