@@ -115,15 +115,16 @@ extract_data → transform_data → load_data → summary_data
 - Download report button
 - ML insights tab
 
-### Running the Dashboard
-```bash
-streamlit run dashboard/app.py
+
+## AWS Deployment
+![EC2 Instance](screenshots/ec2_instance.png)
+![Dashboard](screenshots/dashboard_overview.png)
+![ML Insights](screenshots/ml_insights.png)
 ```
 
-Access at: `http://localhost:8501`
 
-## Live Dashboard
-Access the live dashboard at: http://35.172.117.131:8501
+
+
 
 ---
 
