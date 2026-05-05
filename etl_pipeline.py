@@ -4,6 +4,10 @@ from sqlalchemy import create_engine
 
 engine = create_engine("mysql+pymysql://root:jeet1108@localhost/ecommerce_db")
 
+import tempfile
+import os
+from s3_utils import upload_file
+
 print("Connection successful!")
 
 customer_df = pd.read_sql("SELECT * FROM customers", engine)
@@ -64,4 +68,20 @@ print("Monthly_Sale Loaded!")
 payment_revenue.to_sql('report_payment_revenue', engine, if_exists='replace', index=False)
 print("Payment_Revenue Loaded!")
 
+print("Uploading reports to S3...")
+temp_dir = tempfile.gettempdir()
 
+# Save to temp directory
+revenue_by_category.to_csv(os.path.join(temp_dir, 'revenue_by_category.csv'), index=False)
+customer_spending.to_csv(os.path.join(temp_dir, 'customer_spending.csv'), index=False)
+top_ten_customers.to_csv(os.path.join(temp_dir, 'top_ten_customers.csv'), index=False)
+monthly_sale.to_csv(os.path.join(temp_dir, 'monthly_sale.csv'), index=False)
+payment_revenue.to_csv(os.path.join(temp_dir, 'payment_revenue.csv'), index=False)
+
+# Upload to S3
+upload_file(os.path.join(temp_dir, 'revenue_by_category.csv'), 'reports/revenue_by_category.csv')
+upload_file(os.path.join(temp_dir, 'customer_spending.csv'), 'reports/customer_spending.csv')
+upload_file(os.path.join(temp_dir, 'top_ten_customers.csv'), 'reports/top_ten_customers.csv')
+upload_file(os.path.join(temp_dir, 'monthly_sale.csv'), 'reports/monthly_sale.csv')
+upload_file(os.path.join(temp_dir, 'payment_revenue.csv'), 'reports/payment_revenue.csv')
+print("All reports uploaded to S3!")

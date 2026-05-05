@@ -5,6 +5,10 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from s3_utils import upload_file
 
 
 engine = create_engine("mysql+pymysql://root:jeet1108@localhost/ecommerce_db")
@@ -103,3 +107,7 @@ plt.title('Customer Segmentation')
 plt.savefig('customer_segments.png')
 plt.show()
 print("Segmentation chart saved!")
+
+upload_file('ml/elbow_curve.png', 'ml-outputs/elbow_curve.png')
+upload_file('ml/customer_segments.png', 'ml-outputs/customer_segments.png')
+print("Segmentation charts uploaded to S3!")

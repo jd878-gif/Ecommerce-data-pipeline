@@ -8,7 +8,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 import matplotlib.pyplot as plt
 import numpy as np
-
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from s3_utils import upload_file
 
 engine = create_engine("mysql+pymysql://root:jeet1108@localhost/ecommerce_db")
 print("Connection successful!")
@@ -82,3 +85,6 @@ plt.tight_layout()
 plt.savefig('churn_prediction.png')
 plt.show()
 print('Chart Saved!')
+
+upload_file('ml/churn_prediction.png', 'ml-outputs/churn_prediction.png')
+print("Churn chart uploaded to S3!")

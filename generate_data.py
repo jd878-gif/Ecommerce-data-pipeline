@@ -2,6 +2,7 @@ from faker import Faker
 import pandas as pd
 import random
 from datetime import datetime, timedelta
+from s3_utils import upload_file
 
 fake = Faker()
 
@@ -91,3 +92,10 @@ for i in range(45000):
 order_items_df = pd.DataFrame(order_items)
 order_items_df.to_csv('data/order_items.csv', index=False)
 print(f"Generated {len(order_items_df)} order_items!")
+
+print("Uploading data to S3...")
+upload_file('data/customer.csv', 'raw-data/customer.csv')
+upload_file('data/product.csv', 'raw-data/product.csv')
+upload_file('data/order.csv', 'raw-data/order.csv')
+upload_file('data/order_items.csv', 'raw-data/order_items.csv')
+print("All files uploaded to S3!")
