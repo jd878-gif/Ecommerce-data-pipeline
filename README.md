@@ -1,9 +1,7 @@
 # E-Commerce Data Pipeline
 
 ## Overview
-An industry-level E-Commerce Data Pipeline project built from scratch showing complete Data Engineering and Data Science workflow — from data generation to ML-powered interactive dashboard.
-
----
+An end-to-end e-commerce analytics pipeline — built to turn raw transaction data into churn predictions, sales forecasts, and customer segments a business could actually act on.
 
 ## Project Evolution
 | Phase | Technology | Description |
@@ -159,6 +157,23 @@ extract_data → transform_data → load_data → summary_data
 | Dormant | 1,458 (14.7%) | 2.8 | $13,698 | 988 |
 
 ---
+
+## Key Decisions
+
+**Why MySQL + Airflow instead of a simpler script?** A single script works for a
+one-off run, but production data pipelines need scheduling, retry logic, and
+observability. Airflow's DAG model made dependencies between extract, transform,
+and load steps explicit, and MySQL gave the pipeline a queryable staging layer
+instead of passing raw files between steps.
+
+**Why these specific ML numbers?** The churn model reaches 63% accuracy and the
+sales forecast an R² of 0.65 — both honest ceilings for this dataset's size and
+feature set, not inflated results. I'd rather report the real numbers and explain
+the constraint than round up.
+
+**Why K=4 for customer segmentation?** I chose K=4 using the elbow method
+(see `elbow_curve.png`) — it's the point where adding more clusters stopped
+meaningfully reducing within-cluster variance.
 
 ## How to Run
 
