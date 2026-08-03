@@ -120,13 +120,11 @@ extract_data → transform_data → load_data → summary_data
 ![EC2 Instance](screenshots/EC2_instance.png)
 ![Dashboard](screenshots/dashboard_overview.png)
 ![ML Insights](screenshots/ml_insights.png)
-```
 
 
 
 
 
----
 
 ## Machine Learning Models
 
