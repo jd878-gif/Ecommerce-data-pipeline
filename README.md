@@ -101,7 +101,7 @@ extract_data → transform_data → load_data → summary_data
 
 ---
 
-## Streamlit Dashboard
+## Tableau/Streamlit Dashboard
 
 ### Features
 - Interactive Plotly charts
